@@ -1,0 +1,10 @@
+const path = require("path");
+
+
+module.exports = {
+  // informa pro sequelize que os arquivos mudanram de lugar
+  "config": path.resolve("./src/config", "config.json"),
+  "models-path": path.resolve("./src/models"),
+  "seeders-path": path.resolve("./src/seeders"),
+  "migrations-path": path.resolve("./src/migrations")
+}
