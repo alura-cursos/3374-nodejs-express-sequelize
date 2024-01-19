@@ -4,13 +4,17 @@ const {
 } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Pessoa extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // defina as assosiações aqui
+      Pessoa.hasMany(models.Curso, {
+        // foreignKey da outra tabela que vai ser usada para busca.
+        foreignKey: 'docente_id'
+      });
+      Pessoa.hasMany(models.Matricula, {
+        foreignKey: 'estudante_id',
+        scope: { status: 'matriculado' },
+        as: 'aulasMatriculadas'
+      });
     }
   }
   Pessoa.init({
